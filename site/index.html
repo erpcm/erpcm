@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- PAGE-HEAD -->
+<title>ERPCM: ERP mã nguồn mở cho doanh nghiệp Việt Nam</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="ERPCM là app mã nguồn mở chạy trên ERPNext v16, thêm những phần doanh nghiệp Việt Nam cần: kiểm mã số thuế, VietQR, đọc hoá đơn điện tử. Giấy phép GPLv3.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: một tờ khai — một cột lệch trái trên nền giấy kẻ; dãy ô mã số thuế là điểm nhấn duy nhất. */
+:root {
+  --paper: #f3f6fb;   /* giấy lạnh */
+  --sheet: #ffffff;
+  --ink: #14213d;     /* mực xanh đen */
+  --muted: #56627b;
+  --rule: #d3dae6;
+  --accent: #1a3fb0;  /* mực bút bi */
+  --accent-soft: #e6ecfb;
+  --ok: #1b7a4b;
+  --bad: #b83227;
+  --display: "Be Vietnam Pro", "Segoe UI", system-ui, sans-serif;
+  --body: "Be Vietnam Pro", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0d1220; --sheet: #141a2a; --ink: #e8ecf5; --muted: #9ca8bf; --rule: #2a3349;
+    --accent: #86a6ff; --accent-soft: #1b2545; --ok: #6ed3a1; --bad: #ff8d7e; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0d1220; --sheet: #141a2a; --ink: #e8ecf5; --muted: #9ca8bf; --rule: #2a3349;
+  --accent: #86a6ff; --accent-soft: #1b2545; --ok: #6ed3a1; --bad: #ff8d7e; color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.65 var(--body); -webkit-text-size-adjust: 100%; }
+img { max-width: 100%; }
+a { color: var(--accent); text-underline-offset: 0.18em; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.wrap { max-width: 62rem; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.top .wrap { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.5rem 1.5rem; padding-block: 1.25rem; }
+.mark { font: 800 1.25rem/1 var(--display); letter-spacing: 0.04em; color: var(--ink); text-decoration: none; }
+.top nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; font-size: 0.95rem; }
+.top nav a { color: var(--muted); text-decoration: none; }
+.top nav a:hover { color: var(--accent); text-decoration: underline; }
+.hero .wrap { display: grid; gap: 2.5rem; padding-block: 2.5rem 3.5rem; }
+h1 { font: 800 clamp(2rem, 5.2vw, 3.4rem)/1.12 var(--display); letter-spacing: -0.02em; margin: 0; max-width: 18ch; text-wrap: balance; }
+.lede { margin: 1.1rem 0 0; max-width: 60ch; color: var(--muted); font-size: 1.125rem; }
+.lede strong { color: var(--ink); font-weight: 600; }
+.cta { display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; align-items: center; margin-top: 1.5rem; }
+.btn { display: inline-block; padding: 0.7rem 1.15rem; background: var(--accent); color: var(--sheet); font-weight: 600; text-decoration: none; border-radius: 3px; }
+.btn:hover { filter: brightness(1.08); }
+.form { background: var(--sheet); border: 1px solid var(--rule); border-top: 4px solid var(--ink); padding: 1.5rem clamp(1rem, 3vw, 1.75rem) 1.6rem; display: grid; gap: 1.1rem; min-width: 0; }
+.form-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.25rem 1rem; font: 500 0.78rem/1.4 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.form label { font-weight: 600; }
+.form input { width: 100%; max-width: 22rem; margin-top: 0.4rem; padding: 0.6rem 0.75rem; font: 500 1.15rem/1.2 var(--mono); color: var(--ink); background: var(--paper); border: 1px solid var(--muted); border-radius: 3px; letter-spacing: 0.06em; }
+.cells { display: grid; grid-template-columns: repeat(10, minmax(0, 3.1rem)); gap: clamp(2px, 0.8vw, 6px); }
+.cell { display: grid; justify-items: center; gap: 0.25rem; }
+.cell b { display: grid; place-items: center; width: 100%; aspect-ratio: 1 / 1.15; border: 1.5px solid var(--ink); background: var(--sheet); font: 600 clamp(1rem, 4.2vw, 1.6rem)/1 var(--mono); font-variant-numeric: tabular-nums; }
+.cell small { font: 400 clamp(0.6rem, 2.2vw, 0.75rem)/1.2 var(--mono); color: var(--muted); white-space: nowrap; }
+.cell.check b { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+.cell.check small { color: var(--accent); }
+.verdict { margin: 0; font-weight: 600; min-height: 3.3em; max-width: 58ch; }
+.verdict[data-state="ok"] { color: var(--ok); }
+.verdict[data-state="bad"] { color: var(--bad); }
+.verdict span { display: block; font: 400 0.9rem/1.5 var(--mono); color: var(--muted); margin-top: 0.2rem; overflow-wrap: anywhere; }
+.note { margin: 0; font-size: 0.9rem; color: var(--muted); max-width: 62ch; }
+section { border-top: 1px solid var(--rule); }
+section .wrap { padding-block: 3rem; display: grid; gap: 1.75rem; }
+h2 { font: 800 clamp(1.4rem, 3vw, 1.9rem)/1.2 var(--display); letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
+.sub { margin: -1rem 0 0; color: var(--muted); max-width: 62ch; }
+.rows { display: grid; gap: 0; border-top: 1.5px solid var(--ink); }
+.row { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 0.4rem 2rem; padding: 1.15rem 0; border-bottom: 1px solid var(--rule); }
+.row h3 { font: 600 1.05rem/1.4 var(--display); margin: 0; }
+.row p { margin: 0; max-width: 60ch; min-width: 0; }
+.row .tag { display: block; margin-top: 0.3rem; font: 500 0.75rem/1.4 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.row code, .lede code { font: 500 0.92em var(--mono); background: var(--accent-soft); padding: 0.05em 0.3em; border-radius: 2px; overflow-wrap: anywhere; }
+@media (max-width: 40rem) { .row { grid-template-columns: minmax(0, 1fr); } }
+.code { position: relative; background: var(--sheet); border: 1px solid var(--rule); border-left: 4px solid var(--accent); }
+.code pre { margin: 0; padding: 1.1rem 1.25rem; overflow-x: auto; font: 400 0.95rem/1.7 var(--mono); }
+.copy { position: absolute; top: 0.55rem; right: 0.55rem; padding: 0.3rem 0.7rem; font: 500 0.8rem/1.3 var(--body); color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 3px; cursor: pointer; }
+.copy:hover { border-color: var(--accent); color: var(--accent); }
+footer { border-top: 1.5px solid var(--ink); }
+footer .wrap { padding-block: 1.75rem 2.5rem; color: var(--muted); font-size: 0.9rem; display: grid; gap: 0.4rem; }
+footer p { margin: 0; max-width: 70ch; }
+</style>
+<!-- /PAGE-HEAD -->
+</head>
+<body>
+<!-- PAGE-BODY -->
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#top">ERPCM</a>
+    <nav aria-label="Mục lục">
+      <a href="#co-gi">Bản 0.1.0</a>
+      <a href="#lo-trinh">Lộ trình</a>
+      <a href="#cai-dat">Cài đặt</a>
+      <a href="https://github.com/erpcm/erpcm">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <h1>ERP mã nguồn mở cho doanh nghiệp Việt Nam</h1>
+        <p class="lede">ERPCM là một app chạy trên <strong>ERPNext v16</strong>. Nó thêm những phần mà doanh nghiệp Việt Nam cần và ERPNext gốc chưa có: kiểm mã số thuế, mã VietQR trên hoá đơn, đọc hoá đơn điện tử. Mã nguồn mở theo giấy phép <strong>GPLv3</strong>, dùng và sửa tự do.</p>
+        <div class="cta">
+          <a class="btn" href="#cai-dat">Cài lên ERPNext của bạn</a>
+          <a href="https://github.com/erpcm/erpcm">Xem mã nguồn trên GitHub</a>
+        </div>
+      </div>
+
+      <div class="form" aria-labelledby="mst-title">
+        <div class="form-head"><span id="mst-title">Thử ngay: kiểm mã số thuế</span><span>erpcm.vn.taxcode</span></div>
+        <div>
+          <label for="mst-input">Mã số thuế</label><br>
+          <input id="mst-input" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" maxlength="20" value="0100109106" aria-describedby="mst-verdict">
+        </div>
+        <div class="cells" id="mst-cells" aria-hidden="true"></div>
+        <p class="verdict" id="mst-verdict" role="status"></p>
+        <p class="note">Chữ số thứ 10 của mã số thuế là số kiểm tra, tính từ chín chữ số đầu. Gõ nhầm một chữ số là phát hiện được ngay khi lưu khách hàng, trước khi hoá đơn mang mã sai được phát hành. Mã có sẵn trong ô là mã số thuế công khai của Viettel; trang này tính ngay trên máy bạn, không gửi gì đi.</p>
+      </div>
+    </div>
+  </div>
+
+  <section id="co-gi">
+    <div class="wrap">
+      <h2>Bản 0.1.0 có gì</h2>
+      <p class="sub">Ba phần đầu tiên, chuyển từ một hệ thống ERPNext đang chạy thật ở một doanh nghiệp sản xuất. Phần tính toán là hàm thuần, có bộ test chạy không cần máy chủ.</p>
+      <div class="rows">
+        <div class="row">
+          <h3>Kiểm mã số thuế<span class="tag">Customer · Supplier</span></h3>
+          <p>Khi lưu khách hàng hoặc nhà cung cấp, ERPCM kiểm số kiểm tra của mã 10 số và dạng mã 13 số của đơn vị trực thuộc. Mã sai bị từ chối kèm lời giải thích sai ở đâu. Mã đúng được chuẩn hoá về một cách viết.</p>
+        </div>
+        <div class="row">
+          <h3>VietQR trên hoá đơn bán<span class="tag">Sales Invoice · mẫu in</span></h3>
+          <p>Mẫu in gọi <code>vietqr_svg_for_sales_invoice</code> để in mã QR chuyển khoản theo chuẩn NAPAS: đúng tài khoản công ty, đúng số tiền còn phải thu, nội dung là số hoá đơn. Hoá đơn ngoại tệ không in mã. Thiếu cấu hình thì bỏ qua mã, hoá đơn vẫn in được.</p>
+        </div>
+        <div class="row">
+          <h3>Đọc hoá đơn điện tử XML<span class="tag">đang kiểm với tệp thật</span></h3>
+          <p>Đọc tệp XML hoá đơn tải từ cổng thuế thành dữ liệu có cấu trúc và tự kiểm tổng tiền. Tên thẻ lấy theo cấu trúc đã công bố của Quyết định 1450/QĐ-TCT và chưa đối chiếu đủ với tệp thật, nên phần này mới dừng ở mức thư viện, chưa tạo chứng từ.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="lo-trinh">
+    <div class="wrap">
+      <h2>Đang chuyển sang mã nguồn mở</h2>
+      <p class="sub">Những phần dưới đây đang chạy nội bộ và sẽ được đưa vào ERPCM sau khi gỡ hết cấu hình riêng. Chưa có ngày hẹn; thứ tự có thể đổi theo góp ý.</p>
+      <div class="rows">
+        <div class="row">
+          <h3>Kế toán Việt Nam<span class="tag">dự kiến</span></h3>
+          <p>Hệ thống tài khoản và báo cáo tài chính theo chế độ kế toán doanh nghiệp (Thông tư 99), cột so sánh kỳ trước, bảng kê hoá đơn mua vào, checklist đóng kỳ.</p>
+        </div>
+        <div class="row">
+          <h3>Phát hành hoá đơn điện tử<span class="tag">dự kiến</span></h3>
+          <p>Phát hành từ Sales Invoice qua nhà cung cấp hoá đơn điện tử, kiểm trước dữ liệu khách hàng còn thiếu gì, hoá đơn điều chỉnh và thay thế theo Nghị định 70/2025.</p>
+        </div>
+        <div class="row">
+          <h3>Số chứng từ theo pháp nhân<span class="tag">dự kiến</span></h3>
+          <p>Mỗi công ty một dải số riêng cho từng loại chứng từ, không trùng và không nhảy số giữa các pháp nhân dùng chung một hệ thống.</p>
+        </div>
+        <div class="row">
+          <h3>Giao diện tiếng Việt<span class="tag">dự kiến</span></h3>
+          <p>Bản dịch cho những chỗ ERPNext còn để tiếng Anh, và mẫu in chứng từ theo cách trình bày quen dùng ở Việt Nam.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cai-dat">
+    <div class="wrap">
+      <h2>Cài đặt</h2>
+      <p class="sub">Cần một bench đang chạy Frappe và ERPNext phiên bản 16. Thay <code>ten-site</code> bằng tên site của bạn.</p>
+      <div class="code">
+        <button class="copy" id="copy-install" type="button">Sao chép</button>
+        <pre id="install-cmd">bench get-app https://github.com/erpcm/erpcm
+bench --site ten-site install-app erpcm</pre>
+      </div>
+      <p class="note">Sau khi cài: mở danh mục Ngân hàng (Bank), điền ô NAPAS BIN cho ngân hàng của công ty để mã VietQR hiện trên mẫu in.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>ERPCM là phần mềm tự do, phát hành theo giấy phép GNU GPL phiên bản 3. Không kèm bảo hành.</p>
+    <p>ERPNext và Frappe là nhãn hiệu của Frappe Technologies Pvt. Ltd. ERPCM là dự án độc lập, không thuộc và không được Frappe bảo trợ.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var W = [31, 29, 23, 19, 17, 13, 7, 5, 3];
+  var input = document.getElementById("mst-input");
+  var cells = document.getElementById("mst-cells");
+  var verdict = document.getElementById("mst-verdict");
+
+  // Cùng quy tắc với erpcm/vn/taxcode.py.
+  function normalise(raw) {
+    var c = String(raw == null ? "" : raw).replace(/[\s.]/g, "");
+    if (/^\d{13}$/.test(c)) c = c.slice(0, 10) + "-" + c.slice(10);
+    return c;
+  }
+  function check(raw) {
+    var mst = normalise(raw);
+    if (!mst) return { state: "", msg: "Nhập mã số thuế 10 hoặc 13 chữ số.", calc: "" };
+    var m = /^(\d{10})(?:-(\d{3}))?$/.exec(mst);
+    if (!m) return { state: "bad", msg: "Không đúng dạng mã số thuế: phải là 10 chữ số, hoặc 10 chữ số kèm 3 chữ số đơn vị trực thuộc.", calc: "" };
+    var p = m[1], total = 0;
+    for (var i = 0; i < 9; i++) total += Number(p[i]) * W[i];
+    var expected = 10 - (total % 11);
+    var calc = "tổng = " + total + " · 10 − (" + total + " mod 11) = " + expected;
+    if (expected === 10) return { state: "bad", msg: "Không hợp lệ: chín chữ số đầu không sinh ra số kiểm tra nào.", calc: calc };
+    if (Number(p[9]) !== expected) return { state: "bad", msg: "Sai số kiểm tra: chữ số thứ 10 phải là " + expected + ", không phải " + p[9] + ". Gần như chắc chắn là lỗi đánh máy.", calc: calc };
+    if (m[2] === "000") return { state: "bad", msg: "Mã đơn vị trực thuộc 000 không được cấp.", calc: calc };
+    return { state: "ok", msg: "Hợp lệ" + (m[2] ? ", đơn vị trực thuộc " + m[2] + "." : "."), calc: calc };
+  }
+  function render() {
+    var digits = normalise(input.value).replace(/\D/g, "").slice(0, 10);
+    cells.textContent = "";
+    for (var i = 0; i < 10; i++) {
+      var cell = document.createElement("div");
+      cell.className = "cell" + (i === 9 ? " check" : "");
+      var b = document.createElement("b");
+      b.textContent = digits[i] || "";
+      var s = document.createElement("small");
+      s.textContent = i === 9 ? "kiểm tra" : "×" + W[i];
+      cell.appendChild(b); cell.appendChild(s);
+      cells.appendChild(cell);
+    }
+    var r = check(input.value);
+    verdict.dataset.state = r.state;
+    verdict.textContent = r.msg;
+    if (r.calc) { var span = document.createElement("span"); span.textContent = r.calc; verdict.appendChild(span); }
+  }
+  input.addEventListener("input", render);
+  render();
+
+  var btn = document.getElementById("copy-install");
+  var pre = document.getElementById("install-cmd");
+  btn.addEventListener("click", function () {
+    function selectIt() {
+      var range = document.createRange(); range.selectNodeContents(pre);
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+      btn.textContent = "Đã chọn, bấm Ctrl+C";
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(pre.textContent).then(function () { btn.textContent = "Đã sao chép"; }, selectIt);
+    } else { selectIt(); }
+  });
+})();
+</script>
+<!-- /PAGE-BODY -->
+</body>
+</html>
