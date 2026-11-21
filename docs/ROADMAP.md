@@ -9,10 +9,14 @@ riêng của nơi nó đang chạy, có test không cần site, và đã cài th
 - VietQR cho Sales Invoice (hàm Jinja cho mẫu in).
 - Đọc hoá đơn điện tử XML (thư viện; tên thẻ chưa đối chiếu đủ với tệp thật).
 
-## Việc trước khi công bố 0.1.0
+## Đã thử trên bench sạch (21/11/2026)
 
-- Cài thử `bench get-app` + `install-app` trên một bench Frappe/ERPNext v16 sạch.
-- Thử lưu Customer với mã số thuế sai và đúng; thử mẫu in có VietQR.
+Frappe 16.56.0 + ERPNext v16.55.0, site mới: `bench get-app` từ GitHub, `install-app erpcm`, ô NAPAS BIN có trên Bank,
+lưu Supplier với mã số thuế sai bị từ chối và mã đúng được chuẩn hoá, cài lại lần hai không đổi gì.
+
+## Còn phải thử
+
+- Mẫu in Sales Invoice có VietQR trên một công ty đã có tài khoản ngân hàng.
 
 ## Dự kiến
 
