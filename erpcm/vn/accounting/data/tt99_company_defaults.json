@@ -1,0 +1,33 @@
+{
+	"_about": [
+		"Tài khoản mặc định của Company theo SỐ HIỆU trong tt99_chart.json. set_company_defaults chỉ điền ô đang",
+		"trống (hoặc đang trỏ vào tài khoản tổng hợp / tài khoản không còn); ô người dùng đã chọn một tài khoản chi",
+		"tiết khác thì giữ nguyên và được báo lại. ERPNext chỉ kiểm loại tài khoản của một số ô khi lưu Company.",
+		"Mọi ô ở đây là lựa chọn của dự án; kế toán trưởng xem lại trước khi dùng (bảng ở docs/ke-toan-tt99.md).",
+		"`hrms` chỉ dùng khi site có Frappe HR."
+	],
+	"defaults": {
+		"default_cash_account": "111",
+		"default_receivable_account": "131",
+		"default_payable_account": "331",
+		"default_income_account": "511",
+		"default_expense_account": "632",
+		"default_inventory_account": "156",
+		"stock_received_but_not_billed": "3389",
+		"asset_received_but_not_billed": "3385",
+		"round_off_account": "6428",
+		"exchange_gain_loss_account": "635",
+		"depreciation_expense_account": "6424",
+		"accumulated_depreciation_account": "2141",
+		"disposal_account": "811",
+		"capital_work_in_progress_account": "2411",
+		"stock_adjustment_account": "811",
+		"write_off_account": "811"
+	},
+	"hrms": {
+		"_about": "Chỉ khi site có Frappe HR. Có sẵn các ô này thì Frappe HR không tự tạo tài khoản ngoài hệ thống TT99 khi lưu Company.",
+		"default_payroll_payable_account": "334",
+		"default_employee_advance_account": "141",
+		"expense_claim_account": "6428"
+	}
+}

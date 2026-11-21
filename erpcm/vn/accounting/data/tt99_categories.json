@@ -1,0 +1,328 @@
+{
+	"_about": [
+		"Account Category là lớp nối hệ thống tài khoản với báo cáo tài chính: một dòng báo cáo là tổng của một số nhóm.",
+		"Nhóm đặt theo BẢN CHẤT của tài khoản, không theo dòng của mẫu B01-DN: nhiều tài khoản (131, 136, 138, 242,",
+		"244, 331, 335, 337, 338, 341, 343, 344, 352, 128, 228) ngắn hạn hay dài hạn tuỳ kỳ hạn của từng khoản dư,",
+		"không tuỳ tài khoản. Việc tách ngắn hạn / dài hạn là bút toán phân loại lại cuối kỳ do người làm.",
+		"Báo cáo lưu chuyển tiền tệ (B03-DN) nhóm theo hoạt động, không dùng được các nhóm này.",
+		"QUY TẮC GÁN: tiền tố dài nhất khớp với số hiệu tài khoản thắng (2147 trước 214); chỉ gán cho tài khoản chi",
+		"tiết. Tài khoản tổng hợp để trống: một bộ lọc báo cáo khớp cả 128 lẫn 1281 sẽ cộng một số dư hai lần.",
+		"29 nhóm ERPNext cài sẵn (bộ IFRS) được để nguyên, không dùng."
+	],
+	"categories": [
+		{
+			"name": "Tiền và tương đương tiền",
+			"root_type": "Asset",
+			"prefixes": [
+				"111",
+				"112",
+				"113"
+			]
+		},
+		{
+			"name": "Đầu tư tài chính",
+			"root_type": "Asset",
+			"prefixes": [
+				"121",
+				"128",
+				"221",
+				"222",
+				"228"
+			]
+		},
+		{
+			"name": "Phải thu khách hàng",
+			"root_type": "Asset",
+			"prefixes": [
+				"131"
+			]
+		},
+		{
+			"name": "Thuế GTGT được khấu trừ",
+			"root_type": "Asset",
+			"prefixes": [
+				"133"
+			]
+		},
+		{
+			"name": "Phải thu khác",
+			"root_type": "Asset",
+			"prefixes": [
+				"136",
+				"138",
+				"141"
+			]
+		},
+		{
+			"name": "Hàng tồn kho",
+			"root_type": "Asset",
+			"prefixes": [
+				"151",
+				"152",
+				"153",
+				"154",
+				"155",
+				"156",
+				"157",
+				"158"
+			]
+		},
+		{
+			"name": "Giao dịch mua bán lại trái phiếu Chính phủ",
+			"root_type": "Asset",
+			"prefixes": [
+				"171"
+			]
+		},
+		{
+			"name": "Tài sản cố định",
+			"root_type": "Asset",
+			"prefixes": [
+				"211",
+				"212",
+				"213",
+				"214"
+			]
+		},
+		{
+			"name": "Tài sản sinh học",
+			"root_type": "Asset",
+			"prefixes": [
+				"215"
+			]
+		},
+		{
+			"name": "Bất động sản đầu tư",
+			"root_type": "Asset",
+			"prefixes": [
+				"217",
+				"2147"
+			]
+		},
+		{
+			"name": "Dự phòng tổn thất tài sản",
+			"root_type": "Asset",
+			"prefixes": [
+				"229"
+			]
+		},
+		{
+			"name": "Xây dựng cơ bản dở dang",
+			"root_type": "Asset",
+			"prefixes": [
+				"241"
+			]
+		},
+		{
+			"name": "Chi phí chờ phân bổ",
+			"root_type": "Asset",
+			"prefixes": [
+				"242"
+			]
+		},
+		{
+			"name": "Tài sản thuế thu nhập hoãn lại",
+			"root_type": "Asset",
+			"prefixes": [
+				"243"
+			]
+		},
+		{
+			"name": "Ký quỹ, ký cược đã trả",
+			"root_type": "Asset",
+			"prefixes": [
+				"244"
+			]
+		},
+		{
+			"name": "Phải trả người bán",
+			"root_type": "Liability",
+			"prefixes": [
+				"331"
+			]
+		},
+		{
+			"name": "Thuế và các khoản phải nộp Nhà nước",
+			"root_type": "Liability",
+			"prefixes": [
+				"333"
+			]
+		},
+		{
+			"name": "Phải trả người lao động",
+			"root_type": "Liability",
+			"prefixes": [
+				"334"
+			]
+		},
+		{
+			"name": "Chi phí phải trả",
+			"root_type": "Liability",
+			"prefixes": [
+				"335"
+			]
+		},
+		{
+			"name": "Phải trả, phải nộp khác",
+			"root_type": "Liability",
+			"prefixes": [
+				"332",
+				"336",
+				"337",
+				"338"
+			]
+		},
+		{
+			"name": "Vay và nợ thuê tài chính",
+			"root_type": "Liability",
+			"prefixes": [
+				"341",
+				"343"
+			]
+		},
+		{
+			"name": "Nhận ký quỹ, ký cược",
+			"root_type": "Liability",
+			"prefixes": [
+				"344"
+			]
+		},
+		{
+			"name": "Thuế thu nhập hoãn lại phải trả",
+			"root_type": "Liability",
+			"prefixes": [
+				"347"
+			]
+		},
+		{
+			"name": "Dự phòng phải trả",
+			"root_type": "Liability",
+			"prefixes": [
+				"352"
+			]
+		},
+		{
+			"name": "Quỹ khen thưởng, phúc lợi và quỹ khác",
+			"root_type": "Liability",
+			"prefixes": [
+				"353",
+				"356",
+				"357"
+			]
+		},
+		{
+			"name": "Vốn chủ sở hữu",
+			"root_type": "Equity",
+			"prefixes": [
+				"411",
+				"412",
+				"413",
+				"414",
+				"418",
+				"419"
+			]
+		},
+		{
+			"name": "Lợi nhuận sau thuế chưa phân phối",
+			"root_type": "Equity",
+			"prefixes": [
+				"421"
+			]
+		},
+		{
+			"name": "Doanh thu bán hàng và cung cấp dịch vụ",
+			"root_type": "Income",
+			"prefixes": [
+				"511"
+			]
+		},
+		{
+			"name": "Doanh thu hoạt động tài chính",
+			"root_type": "Income",
+			"prefixes": [
+				"515"
+			]
+		},
+		{
+			"name": "Các khoản giảm trừ doanh thu",
+			"root_type": "Income",
+			"prefixes": [
+				"521"
+			]
+		},
+		{
+			"name": "Thu nhập khác",
+			"root_type": "Income",
+			"prefixes": [
+				"711"
+			]
+		},
+		{
+			"name": "Chi phí sản xuất trực tiếp",
+			"root_type": "Expense",
+			"prefixes": [
+				"621",
+				"622",
+				"623",
+				"627"
+			]
+		},
+		{
+			"name": "Giá vốn hàng bán",
+			"root_type": "Expense",
+			"prefixes": [
+				"632"
+			]
+		},
+		{
+			"name": "Chi phí tài chính",
+			"root_type": "Expense",
+			"prefixes": [
+				"635"
+			]
+		},
+		{
+			"name": "Chi phí bán hàng",
+			"root_type": "Expense",
+			"prefixes": [
+				"641"
+			]
+		},
+		{
+			"name": "Chi phí quản lý doanh nghiệp",
+			"root_type": "Expense",
+			"prefixes": [
+				"642"
+			]
+		},
+		{
+			"name": "Chi phí khác",
+			"root_type": "Expense",
+			"prefixes": [
+				"811"
+			]
+		},
+		{
+			"name": "Chi phí thuế thu nhập doanh nghiệp",
+			"root_type": "Expense",
+			"prefixes": [
+				"821"
+			]
+		}
+	],
+	"uncategorised": [
+		{
+			"number": "911",
+			"reason": "Tài khoản kết chuyển. Period Closing Voucher dùng 911 làm tài khoản kết chuyển thì lãi lỗ của kỳ nằm lại trên 911 cho đến khi được kết chuyển sang 4212; trong lúc đó số dư ấy không thuộc nhóm nào. Dùng 4212 làm tài khoản kết chuyển là cách khác."
+		},
+		{
+			"name": "Chi phí mua hàng phân bổ vào giá trị tồn kho / Expenses Included In Valuation",
+			"reason": "Tài khoản kỹ thuật không số hiệu của ERPNext, không thuộc Thông tư."
+		},
+		{
+			"name": "Chi phí phân bổ vào giá trị tài sản / Expenses Included In Asset Valuation",
+			"reason": "Tài khoản kỹ thuật không số hiệu của ERPNext, không thuộc Thông tư."
+		}
+	],
+	"_note_3385": "Tài sản nhận chưa có hoá đơn mang số 3385 nên được gán theo tiền tố 338 (Phải trả, phải nộp khác)."
+}

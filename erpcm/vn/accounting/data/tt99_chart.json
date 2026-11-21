@@ -1,0 +1,754 @@
+{
+	"name": "Vietnam - TT 99/2025 Chart of Accounts",
+	"country_code": "vn",
+	"_about": [
+		"Hệ thống tài khoản dựng theo Phụ lục II của Thông tư 99/2025/TT-BTC, cộng các tài khoản kỹ thuật ERPNext cần.",
+		"CHƯA đối chiếu từng số hiệu với văn bản Thông tư, chưa được cơ quan hay đơn vị kiểm toán nào thẩm định.",
+		"`additions` liệt kê những node dự án biết là không thuộc Thông tư; danh sách ấy cũng chưa được đối chiếu với văn bản.",
+		"Tên tài khoản viết hai thứ tiếng",
+		"'Tiếng Việt / English': nửa tiếng Anh là bản dịch của dự án, không phải văn bản Thông tư.",
+		"account_type là thuộc tính của ERPNext, không phải của Thông tư; nó quyết định cách ERPNext ghi sổ."
+	],
+	"additions": [
+		{
+			"name": "Tài sản / Assets",
+			"kind": "root",
+			"reason": "Gốc của cây tài khoản. ERPNext bắt buộc mỗi gốc mang một root_type; đây không phải tài khoản của Thông tư."
+		},
+		{
+			"name": "Nợ phải trả / Liabilities",
+			"kind": "root",
+			"reason": "Gốc của cây tài khoản. ERPNext bắt buộc mỗi gốc mang một root_type; đây không phải tài khoản của Thông tư."
+		},
+		{
+			"name": "Vốn chủ sở hữu / Owner's Equity",
+			"kind": "root",
+			"reason": "Gốc của cây tài khoản. ERPNext bắt buộc mỗi gốc mang một root_type; đây không phải tài khoản của Thông tư."
+		},
+		{
+			"name": "Doanh thu và thu nhập / Revenue and Income",
+			"kind": "root",
+			"reason": "Gốc của cây tài khoản. ERPNext bắt buộc mỗi gốc mang một root_type; đây không phải tài khoản của Thông tư."
+		},
+		{
+			"name": "Chi phí / Expenses",
+			"kind": "root",
+			"reason": "Gốc của cây tài khoản. ERPNext bắt buộc mỗi gốc mang một root_type; đây không phải tài khoản của Thông tư."
+		},
+		{
+			"number": "9",
+			"kind": "root",
+			"reason": "Loại 9 đứng thành gốc riêng với root_type Equity: Period Closing Voucher của ERPNext chỉ nhận tài khoản kết chuyển thuộc Equity hoặc Liability, nên 911 phải nằm dưới một gốc Equity."
+		},
+		{
+			"number": "1",
+			"kind": "group",
+			"reason": "Nhóm một chữ số do dự án thêm để gom các tài khoản cùng loại; không phải tài khoản của Thông tư."
+		},
+		{
+			"number": "2",
+			"kind": "group",
+			"reason": "Nhóm một chữ số do dự án thêm để gom các tài khoản cùng loại; không phải tài khoản của Thông tư."
+		},
+		{
+			"number": "5",
+			"kind": "group",
+			"reason": "Nhóm một chữ số do dự án thêm để gom các tài khoản cùng loại; không phải tài khoản của Thông tư."
+		},
+		{
+			"number": "6",
+			"kind": "group",
+			"reason": "Nhóm một chữ số do dự án thêm để gom các tài khoản cùng loại; không phải tài khoản của Thông tư."
+		},
+		{
+			"number": "7",
+			"kind": "group",
+			"reason": "Nhóm một chữ số do dự án thêm để gom các tài khoản cùng loại; không phải tài khoản của Thông tư."
+		},
+		{
+			"number": "8",
+			"kind": "group",
+			"reason": "Nhóm một chữ số do dự án thêm để gom các tài khoản cùng loại; không phải tài khoản của Thông tư."
+		},
+		{
+			"number": "1385",
+			"kind": "account",
+			"reason": "Tài khoản tạm (account_type Temporary) để nhập số dư đầu kỳ; ERPNext dùng nó làm đối ứng khi mở sổ. Số hiệu do dự án chọn dưới 138."
+		},
+		{
+			"number": "3389",
+			"kind": "account",
+			"reason": "Hàng đã nhận chưa có hoá đơn (account_type Stock Received But Not Billed), ERPNext bắt buộc khi bật kế toán kho kê khai thường xuyên. Số hiệu do dự án chọn dưới 338; chưa kiểm Thông tư có dùng số này cho tài khoản khác hay không."
+		},
+		{
+			"number": "3385",
+			"kind": "account",
+			"reason": "Tài sản đã nhận chưa có hoá đơn (account_type Asset Received But Not Billed), ERPNext dùng khi mua tài sản cố định. Số hiệu do dự án chọn dưới 338; chưa kiểm Thông tư có dùng số này cho tài khoản khác hay không."
+		},
+		{
+			"name": "Chi phí mua hàng phân bổ vào giá trị tồn kho / Expenses Included In Valuation",
+			"kind": "account",
+			"reason": "Tài khoản không số hiệu ERPNext cần để phân bổ chi phí mua hàng vào giá trị tồn kho (Landed Cost Voucher)."
+		},
+		{
+			"name": "Chi phí phân bổ vào giá trị tài sản / Expenses Included In Asset Valuation",
+			"kind": "account",
+			"reason": "Tài khoản không số hiệu ERPNext cần để phân bổ chi phí vào giá trị tài sản."
+		},
+		{
+			"number": "6428",
+			"kind": "account_type",
+			"account_type": "Round Off",
+			"reason": "6428 có trong danh mục dự án dựng theo Thông tư (chưa đối chiếu); ERPNext cần một tài khoản loại Round Off để ghi chênh lệch làm tròn, và dự án gán loại đó cho 6428. Đây là lựa chọn của dự án, không phải quy định."
+		},
+		{
+			"number": "811",
+			"kind": "account_type",
+			"account_type": "Stock Adjustment",
+			"reason": "811 có trong danh mục dự án dựng theo Thông tư (chưa đối chiếu); ERPNext đòi một tài khoản loại Stock Adjustment cho ô stock_adjustment_account (nhập, xuất kho không qua mua bán), và dự án gán loại đó cho 811. Đây là lựa chọn của dự án, không phải quy định; kế toán trưởng xem lại."
+		},
+		{
+			"number": "141",
+			"kind": "account_type",
+			"account_type": "Receivable",
+			"reason": "141 có trong danh mục (chưa đối chiếu); Frappe HR đòi tài khoản tạm ứng nhân viên mang loại Receivable, và dự án gán loại ấy cho 141. Hệ quả: mọi dòng Journal Entry vào 141 phải ghi đối tượng (Employee). Lựa chọn của dự án; kế toán trưởng xem lại."
+		},
+		{
+			"number": "334",
+			"kind": "account_type",
+			"account_type": "Payable",
+			"reason": "334 có trong danh mục (chưa đối chiếu); Frappe HR đòi tài khoản lương phải trả mang loại Payable, và dự án gán loại ấy cho 334. Hệ quả: mọi dòng Journal Entry vào 334 phải ghi đối tượng (Employee). Lựa chọn của dự án; kế toán trưởng xem lại."
+		}
+	],
+	"tree": {
+		"Tài sản / Assets": {
+			"root_type": "Asset",
+			"Tài sản ngắn hạn / Current Assets": {
+				"account_number": "1",
+				"Tiền mặt / Cash on Hand": {
+					"account_number": "111",
+					"account_type": "Cash"
+				},
+				"Tiền gửi không kỳ hạn / Demand Deposits": {
+					"account_number": "112",
+					"account_type": "Bank"
+				},
+				"Tiền đang chuyển / Cash in Transit": {
+					"account_number": "113"
+				},
+				"Chứng khoán kinh doanh / Trading Securities": {
+					"account_number": "121"
+				},
+				"Đầu tư nắm giữ đến ngày đáo hạn / Held-to-Maturity Investments": {
+					"account_number": "128",
+					"Tiền gửi có kỳ hạn / Term Deposits": {
+						"account_number": "1281"
+					},
+					"Trái phiếu / Bonds": {
+						"account_number": "1282"
+					},
+					"Cho vay / Loans Granted": {
+						"account_number": "1283"
+					},
+					"Các khoản đầu tư khác nắm giữ đến ngày đáo hạn / Other Held-to-Maturity Investments": {
+						"account_number": "1288"
+					}
+				},
+				"Phải thu của khách hàng / Trade Receivables": {
+					"account_number": "131",
+					"account_type": "Receivable"
+				},
+				"Thuế GTGT được khấu trừ / Deductible VAT": {
+					"account_number": "133",
+					"Thuế GTGT được khấu trừ của hàng hóa, dịch vụ / Deductible VAT on Goods and Services": {
+						"account_number": "1331",
+						"account_type": "Tax"
+					},
+					"Thuế GTGT được khấu trừ của TSCĐ / Deductible VAT on Fixed Assets": {
+						"account_number": "1332",
+						"account_type": "Tax"
+					}
+				},
+				"Phải thu nội bộ / Intercompany Receivables": {
+					"account_number": "136",
+					"Vốn kinh doanh ở đơn vị trực thuộc / Working Capital at Subsidiaries": {
+						"account_number": "1361"
+					},
+					"Phải thu nội bộ về chênh lệch tỷ giá / Intercompany Receivables - Exchange Differences": {
+						"account_number": "1362"
+					},
+					"Phải thu nội bộ về chi phí đi vay đủ điều kiện được vốn hoá / Intercompany Receivables - Capitalisable Borrowing Costs": {
+						"account_number": "1363"
+					},
+					"Phải thu nội bộ khác / Other Intercompany Receivables": {
+						"account_number": "1368"
+					}
+				},
+				"Phải thu khác / Other Receivables": {
+					"account_number": "138",
+					"Tài sản thiếu chờ xử lý / Shortage of Assets Awaiting Resolution": {
+						"account_number": "1381"
+					},
+					"Thuế TTĐB của hàng nhập khẩu / Excise Tax on Imported Goods": {
+						"account_number": "1383",
+						"account_type": "Tax"
+					},
+					"Phải thu khác / Other Receivables": {
+						"account_number": "1388"
+					},
+					"Số dư đầu kỳ tạm / Opening Balance Temporary": {
+						"account_number": "1385",
+						"account_type": "Temporary"
+					}
+				},
+				"Tạm ứng / Advances to Employees": {
+					"account_number": "141",
+					"account_type": "Receivable"
+				},
+				"Hàng mua đang đi đường / Goods in Transit": {
+					"account_number": "151",
+					"account_type": "Stock"
+				},
+				"Nguyên liệu, vật liệu / Raw Materials": {
+					"account_number": "152",
+					"account_type": "Stock"
+				},
+				"Công cụ, dụng cụ / Tools and Supplies": {
+					"account_number": "153",
+					"account_type": "Stock"
+				},
+				"Chi phí sản xuất, kinh doanh dở dang / Work in Progress": {
+					"account_number": "154",
+					"account_type": "Stock"
+				},
+				"Sản phẩm / Finished Products": {
+					"account_number": "155",
+					"account_type": "Stock"
+				},
+				"Hàng hóa / Merchandise": {
+					"account_number": "156",
+					"account_type": "Stock"
+				},
+				"Hàng gửi đi bán / Goods on Consignment": {
+					"account_number": "157",
+					"account_type": "Stock"
+				},
+				"Nguyên liệu, vật tư tại kho bảo thuế / Materials in Bonded Warehouse": {
+					"account_number": "158",
+					"account_type": "Stock"
+				},
+				"Giao dịch mua, bán lại trái phiếu chính phủ / Repurchase Agreements of Government Bonds": {
+					"account_number": "171"
+				}
+			},
+			"Tài sản dài hạn / Non-current Assets": {
+				"account_number": "2",
+				"Tài sản cố định hữu hình / Tangible Fixed Assets": {
+					"account_number": "211",
+					"account_type": "Fixed Asset"
+				},
+				"Tài sản cố định thuê tài chính / Finance Lease Fixed Assets": {
+					"account_number": "212",
+					"account_type": "Fixed Asset"
+				},
+				"Tài sản cố định vô hình / Intangible Fixed Assets": {
+					"account_number": "213",
+					"account_type": "Fixed Asset"
+				},
+				"Hao mòn tài sản cố định / Accumulated Depreciation of Fixed Assets": {
+					"account_number": "214",
+					"Hao mòn TSCĐ hữu hình / Accum. Depreciation - Tangible Fixed Assets": {
+						"account_number": "2141",
+						"account_type": "Accumulated Depreciation"
+					},
+					"Hao mòn TSCĐ thuê tài chính / Accum. Depreciation - Finance Lease Fixed Assets": {
+						"account_number": "2142",
+						"account_type": "Accumulated Depreciation"
+					},
+					"Hao mòn TSCĐ vô hình / Accum. Depreciation - Intangible Fixed Assets": {
+						"account_number": "2143",
+						"account_type": "Accumulated Depreciation"
+					},
+					"Hao mòn BĐSĐT / Accum. Depreciation - Investment Property": {
+						"account_number": "2147",
+						"account_type": "Accumulated Depreciation"
+					}
+				},
+				"Tài sản sinh học / Biological Assets": {
+					"account_number": "215",
+					"Súc vật nuôi cho sản phẩm định kỳ / Livestock Yielding Periodic Products": {
+						"account_number": "2151"
+					},
+					"Súc vật nuôi lấy sản phẩm một lần / Livestock Yielding One-time Products": {
+						"account_number": "2152"
+					},
+					"Cây trồng theo mùa vụ hoặc lấy sản phẩm một lần / Seasonal or One-time Harvest Crops": {
+						"account_number": "2153"
+					}
+				},
+				"Bất động sản đầu tư / Investment Property": {
+					"account_number": "217",
+					"account_type": "Fixed Asset"
+				},
+				"Đầu tư vào công ty con / Investments in Subsidiaries": {
+					"account_number": "221"
+				},
+				"Đầu tư vào công ty liên doanh, liên kết / Investments in Joint Ventures and Associates": {
+					"account_number": "222"
+				},
+				"Đầu tư khác / Other Investments": {
+					"account_number": "228",
+					"Đầu tư góp vốn vào đơn vị khác / Equity Investments in Other Entities": {
+						"account_number": "2281"
+					},
+					"Đầu tư khác / Other Investments": {
+						"account_number": "2288"
+					}
+				},
+				"Dự phòng tổn thất tài sản / Provision for Asset Impairment": {
+					"account_number": "229",
+					"Dự phòng giảm giá chứng khoán kinh doanh / Provision for Decline in Value of Trading Securities": {
+						"account_number": "2291"
+					},
+					"Dự phòng tổn thất đầu tư vào đơn vị khác / Provision for Impairment of Investments in Other Entities": {
+						"account_number": "2292"
+					},
+					"Dự phòng phải thu khó đòi / Provision for Doubtful Debts": {
+						"account_number": "2293"
+					},
+					"Dự phòng giảm giá hàng tồn kho / Provision for Inventory Devaluation": {
+						"account_number": "2294"
+					},
+					"Dự phòng tổn thất tài sản sinh học / Provision for Impairment of Biological Assets": {
+						"account_number": "2295"
+					}
+				},
+				"Xây dựng cơ bản dở dang / Construction in Progress": {
+					"account_number": "241",
+					"Mua sắm TSCĐ / Acquisition of Fixed Assets": {
+						"account_number": "2411",
+						"account_type": "Capital Work in Progress"
+					},
+					"Xây dựng cơ bản / Capital Construction": {
+						"account_number": "2412",
+						"account_type": "Capital Work in Progress"
+					},
+					"Sửa chữa, bảo dưỡng định kỳ TSCĐ / Periodic Repair and Maintenance of Fixed Assets": {
+						"account_number": "2413"
+					},
+					"Nâng cấp, cải tạo TSCĐ / Upgrade and Improvement of Fixed Assets": {
+						"account_number": "2414",
+						"account_type": "Capital Work in Progress"
+					}
+				},
+				"Chi phí chờ phân bổ / Deferred Expenses": {
+					"account_number": "242"
+				},
+				"Tài sản thuế thu nhập hoãn lại / Deferred Income Tax Assets": {
+					"account_number": "243"
+				},
+				"Ký quỹ, ký cược / Deposits and Collateral Paid": {
+					"account_number": "244"
+				}
+			}
+		},
+		"Nợ phải trả / Liabilities": {
+			"root_type": "Liability",
+			"Phải trả cho người bán / Trade Payables": {
+				"account_number": "331",
+				"account_type": "Payable"
+			},
+			"Phải trả cổ tức, lợi nhuận / Dividends and Profits Payable": {
+				"account_number": "332"
+			},
+			"Thuế và các khoản phải nộp Nhà nước / Taxes and Payables to the State": {
+				"account_number": "333",
+				"Thuế giá trị gia tăng phải nộp / VAT Payable": {
+					"account_number": "3331",
+					"account_type": "Tax"
+				},
+				"Thuế tiêu thụ đặc biệt / Excise Tax": {
+					"account_number": "3332",
+					"account_type": "Tax"
+				},
+				"Thuế xuất, nhập khẩu / Import and Export Duties": {
+					"account_number": "3333",
+					"account_type": "Tax"
+				},
+				"Thuế thu nhập doanh nghiệp / Corporate Income Tax": {
+					"account_number": "3334",
+					"account_type": "Tax"
+				},
+				"Thuế thu nhập cá nhân / Personal Income Tax": {
+					"account_number": "3335",
+					"account_type": "Tax"
+				},
+				"Thuế tài nguyên / Natural Resources Tax": {
+					"account_number": "3336",
+					"account_type": "Tax"
+				},
+				"Thuế nhà đất, tiền thuê đất / Housing and Land Tax, Land Rent": {
+					"account_number": "3337",
+					"account_type": "Tax"
+				},
+				"Thuế bảo vệ môi trường và các loại thuế khác / Environmental Protection Tax and Other Taxes": {
+					"account_number": "3338",
+					"account_type": "Tax"
+				},
+				"Phí, lệ phí và các khoản phải nộp khác / Fees, Charges and Other Payables": {
+					"account_number": "3339",
+					"account_type": "Tax"
+				}
+			},
+			"Phải trả người lao động / Payables to Employees": {
+				"account_number": "334",
+				"account_type": "Payable"
+			},
+			"Chi phí phải trả / Accrued Expenses": {
+				"account_number": "335"
+			},
+			"Phải trả nội bộ / Intercompany Payables": {
+				"account_number": "336",
+				"Phải trả nội bộ về vốn kinh doanh / Intercompany Payables - Working Capital": {
+					"account_number": "3361"
+				},
+				"Phải trả nội bộ về chênh lệch tỷ giá / Intercompany Payables - Exchange Differences": {
+					"account_number": "3362"
+				},
+				"Phải trả nội bộ về chi phí đi vay đủ điều kiện được vốn hóa / Intercompany Payables - Capitalisable Borrowing Costs": {
+					"account_number": "3363"
+				},
+				"Phải trả nội bộ khác / Other Intercompany Payables": {
+					"account_number": "3368"
+				}
+			},
+			"Thanh toán theo tiến độ hợp đồng xây dựng / Payments per Construction Contract Progress": {
+				"account_number": "337"
+			},
+			"Phải trả, phải nộp khác / Other Payables": {
+				"account_number": "338",
+				"Tài sản thừa chờ giải quyết / Surplus Assets Awaiting Resolution": {
+					"account_number": "3381"
+				},
+				"Kinh phí công đoàn / Trade Union Funds": {
+					"account_number": "3382"
+				},
+				"Bảo hiểm xã hội / Social Insurance": {
+					"account_number": "3383"
+				},
+				"Bảo hiểm y tế / Health Insurance": {
+					"account_number": "3384"
+				},
+				"Bảo hiểm thất nghiệp / Unemployment Insurance": {
+					"account_number": "3386"
+				},
+				"Doanh thu chờ phân bổ / Deferred Revenue": {
+					"account_number": "3387"
+				},
+				"Phải trả, phải nộp khác / Other Payables": {
+					"account_number": "3388"
+				},
+				"Hàng nhận chưa có hóa đơn / Stock Received But Not Billed": {
+					"account_number": "3389",
+					"account_type": "Stock Received But Not Billed"
+				},
+				"Tài sản nhận chưa có hóa đơn / Asset Received But Not Billed": {
+					"account_type": "Asset Received But Not Billed",
+					"account_number": "3385"
+				}
+			},
+			"Vay và nợ thuê tài chính / Borrowings and Finance Lease Liabilities": {
+				"account_number": "341",
+				"Các khoản đi vay / Borrowings": {
+					"account_number": "3411"
+				},
+				"Nợ thuê tài chính / Finance Lease Liabilities": {
+					"account_number": "3412"
+				}
+			},
+			"Trái phiếu phát hành / Bonds Issued": {
+				"account_number": "343",
+				"Trái phiếu thường / Ordinary Bonds": {
+					"account_number": "3431"
+				},
+				"Trái phiếu chuyển đổi / Convertible Bonds": {
+					"account_number": "3432"
+				}
+			},
+			"Nhận ký quỹ, ký cược / Deposits and Collateral Received": {
+				"account_number": "344"
+			},
+			"Thuế thu nhập hoãn lại phải trả / Deferred Income Tax Liabilities": {
+				"account_number": "347"
+			},
+			"Dự phòng phải trả / Provisions": {
+				"account_number": "352",
+				"Dự phòng bảo hành sản phẩm, hàng hóa / Provision for Product Warranty": {
+					"account_number": "3521"
+				},
+				"Dự phòng bảo hành công trình xây dựng / Provision for Construction Warranty": {
+					"account_number": "3522"
+				},
+				"Dự phòng tái cơ cấu doanh nghiệp / Provision for Enterprise Restructuring": {
+					"account_number": "3523"
+				},
+				"Dự phòng phải trả khác / Other Provisions": {
+					"account_number": "3525"
+				}
+			},
+			"Quỹ khen thưởng, phúc lợi / Bonus and Welfare Funds": {
+				"account_number": "353",
+				"Quỹ khen thưởng / Bonus Fund": {
+					"account_number": "3531"
+				},
+				"Quỹ phúc lợi / Welfare Fund": {
+					"account_number": "3532"
+				},
+				"Quỹ phúc lợi đã hình thành TSCĐ / Welfare Fund Used for Fixed Assets": {
+					"account_number": "3533"
+				},
+				"Quỹ thưởng ban quản lý điều hành công ty / Executive Management Bonus Fund": {
+					"account_number": "3534"
+				}
+			},
+			"Quỹ phát triển khoa học và công nghệ / Science and Technology Development Fund": {
+				"account_number": "356",
+				"Quỹ phát triển khoa học và công nghệ / Science and Technology Development Fund": {
+					"account_number": "3561"
+				},
+				"Quỹ phát triển khoa học và công nghệ đã hình thành tài sản / S&T Development Fund Used for Assets": {
+					"account_number": "3562"
+				}
+			},
+			"Quỹ bình ổn giá / Price Stabilisation Fund": {
+				"account_number": "357"
+			}
+		},
+		"Vốn chủ sở hữu / Owner's Equity": {
+			"root_type": "Equity",
+			"Vốn đầu tư của chủ sở hữu / Owner's Invested Capital": {
+				"account_number": "411",
+				"Vốn góp của chủ sở hữu / Owner's Contributed Capital": {
+					"account_number": "4111",
+					"account_type": "Equity"
+				},
+				"Thặng dư vốn / Share Premium": {
+					"account_number": "4112",
+					"account_type": "Equity"
+				},
+				"Quyền chọn chuyển đổi trái phiếu / Bond Conversion Options": {
+					"account_number": "4113",
+					"account_type": "Equity"
+				},
+				"Vốn khác / Other Capital": {
+					"account_number": "4118",
+					"account_type": "Equity"
+				}
+			},
+			"Chênh lệch đánh giá lại tài sản / Asset Revaluation Differences": {
+				"account_number": "412",
+				"account_type": "Equity"
+			},
+			"Chênh lệch tỷ giá hối đoái / Foreign Exchange Differences": {
+				"account_number": "413",
+				"account_type": "Equity"
+			},
+			"Quỹ đầu tư phát triển / Investment and Development Fund": {
+				"account_number": "414",
+				"account_type": "Equity"
+			},
+			"Các quỹ khác thuộc vốn chủ sở hữu / Other Owner's Equity Funds": {
+				"account_number": "418",
+				"account_type": "Equity"
+			},
+			"Cổ phiếu mua lại của chính mình / Treasury Shares": {
+				"account_number": "419",
+				"account_type": "Equity"
+			},
+			"Lợi nhuận sau thuế chưa phân phối / Undistributed Post-tax Profit": {
+				"account_number": "421",
+				"Lợi nhuận sau thuế chưa phân phối lũy kế đến cuối năm trước / Undistributed Post-tax Profit Accumulated to Prior Year End": {
+					"account_number": "4211",
+					"account_type": "Equity"
+				},
+				"Lợi nhuận sau thuế chưa phân phối năm nay / Undistributed Post-tax Profit of Current Year": {
+					"account_number": "4212",
+					"account_type": "Equity"
+				}
+			}
+		},
+		"Doanh thu và thu nhập / Revenue and Income": {
+			"root_type": "Income",
+			"Doanh thu / Revenue": {
+				"account_number": "5",
+				"Doanh thu bán hàng và cung cấp dịch vụ / Revenue from Sales and Services": {
+					"account_number": "511",
+					"account_type": "Income Account"
+				},
+				"Doanh thu hoạt động tài chính / Financial Income": {
+					"account_number": "515",
+					"account_type": "Income Account"
+				},
+				"Các khoản giảm trừ doanh thu / Revenue Deductions": {
+					"account_number": "521",
+					"account_type": "Income Account"
+				}
+			},
+			"Thu nhập khác / Other Income": {
+				"account_number": "7",
+				"Thu nhập khác / Other Income": {
+					"account_number": "711",
+					"account_type": "Income Account"
+				}
+			}
+		},
+		"Chi phí / Expenses": {
+			"root_type": "Expense",
+			"Chi phí sản xuất, kinh doanh / Operating Expenses": {
+				"account_number": "6",
+				"Chi phí nguyên liệu, vật liệu trực tiếp / Direct Materials Cost": {
+					"account_number": "621"
+				},
+				"Chi phí nhân công trực tiếp / Direct Labour Cost": {
+					"account_number": "622"
+				},
+				"Chi phí sử dụng máy thi công / Construction Machinery Operating Cost": {
+					"account_number": "623",
+					"Chi phí nhân công / Labour Cost": {
+						"account_number": "6231"
+					},
+					"Chi phí vật liệu / Materials Cost": {
+						"account_number": "6232"
+					},
+					"Chi phí dụng cụ sản xuất / Production Tools Cost": {
+						"account_number": "6233"
+					},
+					"Chi phí khấu hao máy thi công / Depreciation of Construction Machinery": {
+						"account_number": "6234"
+					},
+					"Chi phí dịch vụ mua ngoài / Outsourced Services Cost": {
+						"account_number": "6237"
+					},
+					"Chi phí bằng tiền khác / Other Cash Expenses": {
+						"account_number": "6238"
+					}
+				},
+				"Chi phí sản xuất chung / Manufacturing Overhead": {
+					"account_number": "627",
+					"Chi phí nhân viên phân xưởng / Factory Staff Cost": {
+						"account_number": "6271"
+					},
+					"Chi phí vật liệu / Materials Cost": {
+						"account_number": "6272"
+					},
+					"Chi phí dụng cụ sản xuất / Production Tools Cost": {
+						"account_number": "6273"
+					},
+					"Chi phí khấu hao TSCĐ / Depreciation of Fixed Assets": {
+						"account_number": "6274",
+						"account_type": "Depreciation"
+					},
+					"Thuế, phí, lệ phí / Taxes, Fees and Charges": {
+						"account_number": "6275"
+					},
+					"Chi phí dịch vụ mua ngoài / Outsourced Services Cost": {
+						"account_number": "6277"
+					},
+					"Chi phí bằng tiền khác / Other Cash Expenses": {
+						"account_number": "6278"
+					}
+				},
+				"Giá vốn hàng bán / Cost of Goods Sold": {
+					"account_number": "632",
+					"account_type": "Cost of Goods Sold"
+				},
+				"Chi phí tài chính / Financial Expenses": {
+					"account_number": "635"
+				},
+				"Chi phí bán hàng / Selling Expenses": {
+					"account_number": "641",
+					"Chi phí nhân viên / Staff Cost": {
+						"account_number": "6411"
+					},
+					"Chi phí vật liệu, bao bì / Materials and Packaging Cost": {
+						"account_number": "6412"
+					},
+					"Chi phí dụng cụ, đồ dùng / Tools and Equipment Cost": {
+						"account_number": "6413"
+					},
+					"Chi phí khấu hao TSCĐ / Depreciation of Fixed Assets": {
+						"account_number": "6414",
+						"account_type": "Depreciation"
+					},
+					"Thuế, phí, lệ phí / Taxes, Fees and Charges": {
+						"account_number": "6415"
+					},
+					"Chi phí dịch vụ mua ngoài / Outsourced Services Cost": {
+						"account_number": "6417"
+					},
+					"Chi phí bằng tiền khác / Other Cash Expenses": {
+						"account_number": "6418"
+					}
+				},
+				"Chi phí quản lý doanh nghiệp / General and Administrative Expenses": {
+					"account_number": "642",
+					"Chi phí nhân viên quản lý / Management Staff Cost": {
+						"account_number": "6421"
+					},
+					"Chi phí vật liệu quản lý / Administrative Materials Cost": {
+						"account_number": "6422"
+					},
+					"Chi phí đồ dùng văn phòng / Office Supplies Cost": {
+						"account_number": "6423"
+					},
+					"Chi phí khấu hao TSCĐ / Depreciation of Fixed Assets": {
+						"account_number": "6424",
+						"account_type": "Depreciation"
+					},
+					"Thuế, phí và lệ phí / Taxes, Fees and Charges": {
+						"account_number": "6425"
+					},
+					"Chi phí dự phòng / Provision Expenses": {
+						"account_number": "6426"
+					},
+					"Chi phí dịch vụ mua ngoài / Outsourced Services Cost": {
+						"account_number": "6427"
+					},
+					"Chi phí bằng tiền khác / Other Cash Expenses": {
+						"account_number": "6428",
+						"account_type": "Round Off"
+					}
+				},
+				"Chi phí mua hàng phân bổ vào giá trị tồn kho / Expenses Included In Valuation": {
+					"account_type": "Expenses Included In Valuation"
+				},
+				"Chi phí phân bổ vào giá trị tài sản / Expenses Included In Asset Valuation": {
+					"account_type": "Expenses Included In Asset Valuation"
+				}
+			},
+			"Chi phí khác / Other Expenses": {
+				"account_number": "8",
+				"Chi phí khác / Other Expenses": {
+					"account_number": "811",
+					"account_type": "Stock Adjustment"
+				},
+				"Chi phí thuế thu nhập doanh nghiệp / Corporate Income Tax Expense": {
+					"account_number": "821",
+					"Chi phí thuế TNDN hiện hành / Current CIT Expense": {
+						"account_number": "8211"
+					},
+					"Chi phí thuế TNDN hoãn lại / Deferred CIT Expense": {
+						"account_number": "8212"
+					}
+				}
+			}
+		},
+		"Xác định kết quả kinh doanh / Income Summary": {
+			"account_number": "9",
+			"Xác định kết quả kinh doanh / Income Summary": {
+				"account_number": "911"
+			},
+			"root_type": "Equity"
+		}
+	}
+}

@@ -1,0 +1,25 @@
+# A throwaway bench for tools/bench/proof.sh: one site, nothing exposed, removed with `down -v` at the end.
+# The database password exists only inside this throwaway container. Every container carries the label
+# erpcm.proof=1, which is how proof.sh tells a bench it built from anything else of the same name.
+name: erpcm-thu
+services:
+  db:
+    image: mariadb:11.8
+    labels: { erpcm.proof: "1" }
+    environment:
+      MARIADB_ROOT_PASSWORD: chi-de-thu-cuc-bo
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--skip-character-set-client-handshake"]
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 3s
+      retries: 40
+  redis:
+    image: redis:7-alpine
+    labels: { erpcm.proof: "1" }
+  bench:
+    image: frappe/erpnext:v16.55.0
+    labels: { erpcm.proof: "1" }
+    depends_on:
+      db: { condition: service_healthy }
+      redis: { condition: service_started }
+    command: ["sleep", "infinity"]

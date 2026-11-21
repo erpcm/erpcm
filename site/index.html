@@ -94,7 +94,7 @@ footer p { margin: 0; max-width: 70ch; }
   <div class="wrap">
     <a class="mark" href="#top">ERPCM</a>
     <nav aria-label="Mục lục">
-      <a href="#co-gi">Bản 0.1.0</a>
+      <a href="#co-gi">Bản 0.2.0</a>
       <a href="#lo-trinh">Lộ trình</a>
       <a href="#cai-dat">Cài đặt</a>
       <a href="https://github.com/erpcm/erpcm">GitHub</a>
@@ -129,8 +129,8 @@ footer p { margin: 0; max-width: 70ch; }
 
   <section id="co-gi">
     <div class="wrap">
-      <h2>Bản 0.1.0 có gì</h2>
-      <p class="sub">Ba phần đầu tiên, chuyển từ một hệ thống ERPNext đang chạy thật ở một doanh nghiệp sản xuất. Phần tính toán là hàm thuần, có bộ test chạy không cần máy chủ.</p>
+      <h2>Bản 0.2.0 có gì</h2>
+      <p class="sub">Ba phần đầu chuyển từ một hệ thống ERPNext đang chạy thật ở một doanh nghiệp sản xuất; các thao tác tạo công ty với hệ thống tài khoản viết riêng cho bản này và mới thử trên bench. Phần tính toán là hàm thuần, có bộ test chạy không cần máy chủ.</p>
       <div class="rows">
         <div class="row">
           <h3>Kiểm mã số thuế<span class="tag">Customer · Supplier</span></h3>
@@ -144,6 +144,10 @@ footer p { margin: 0; max-width: 70ch; }
           <h3>Đọc hoá đơn điện tử XML<span class="tag">đang kiểm với tệp thật</span></h3>
           <p>Đọc tệp XML hoá đơn tải từ cổng thuế thành dữ liệu có cấu trúc và tự kiểm tổng tiền. Tên thẻ lấy theo cấu trúc đã công bố của Quyết định 1450/QĐ-TCT và chưa đối chiếu đủ với tệp thật, nên phần này mới dừng ở mức thư viện, chưa tạo chứng từ.</p>
         </div>
+        <div class="row">
+          <h3>Hệ thống tài khoản<span class="tag">đang hoàn thiện</span></h3>
+          <p><strong>Kế toán theo Thông tư 99/2025/TT-BTC (đang hoàn thiện).</strong> ERPCM kèm một hệ thống tài khoản dựng theo Phụ lục II của Thông tư 99/2025/TT-BTC, cộng một số tài khoản kỹ thuật mà ERPNext cần (liệt kê ở <a href="https://github.com/erpcm/erpcm/blob/main/docs/ke-toan-tt99.md">docs/ke-toan-tt99.md</a>). Danh mục do dự án tự nhập, <strong>chưa được đối chiếu từng số hiệu với văn bản Thông tư và chưa được cơ quan hay đơn vị kiểm toán nào thẩm định</strong>. ERPCM không cam kết "tuân thủ Thông tư 99". Kế toán trưởng của doanh nghiệp phải đối chiếu trước khi dùng.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -155,7 +159,7 @@ footer p { margin: 0; max-width: 70ch; }
       <div class="rows">
         <div class="row">
           <h3>Kế toán Việt Nam<span class="tag">dự kiến</span></h3>
-          <p>Hệ thống tài khoản và báo cáo tài chính theo chế độ kế toán doanh nghiệp (Thông tư 99), cột so sánh kỳ trước, bảng kê hoá đơn mua vào, checklist đóng kỳ.</p>
+          <p>Báo cáo tài chính theo chế độ kế toán doanh nghiệp (Thông tư 99), cột so sánh kỳ trước, bảng kê hoá đơn mua vào, checklist đóng kỳ.</p>
         </div>
         <div class="row">
           <h3>Phát hành hoá đơn điện tử<span class="tag">dự kiến</span></h3>
@@ -176,7 +180,7 @@ footer p { margin: 0; max-width: 70ch; }
   <section id="cai-dat">
     <div class="wrap">
       <h2>Cài đặt</h2>
-      <p class="sub">Cần một bench đang chạy Frappe và ERPNext phiên bản 16. Thay <code>ten-site</code> bằng tên site của bạn.</p>
+      <p class="sub">Cần một bench đang chạy Frappe 16 (từ 16.56) và ERPNext 16 (từ 16.55). Thay <code>ten-site</code> bằng tên site của bạn.</p>
       <div class="code">
         <button class="copy" id="copy-install" type="button">Sao chép</button>
         <pre id="install-cmd">bench get-app https://github.com/erpcm/erpcm
